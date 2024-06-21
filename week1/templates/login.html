@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Вход
+
+{% endblock %}
+
+{% block body %}
+
+
+     <h1>Вход</h1>
+    <form method="post">
+        <input type="text" name="username" placeholder="Имя пользователя" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+        <a href="/register">Регистрация</a>
+    </form>
+
+<style>
+
+        body {
+            background-color: green;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 300px;
+            margin: auto;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-image 0.3s ease;
+        }
+        a {
+            color: #49a09d;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #49a09d;
+            color: white;
+        }
+
+    </style>
+{% endblock %}

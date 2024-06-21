@@ -1,9 +1,43 @@
-{% extends 'main.html' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Добро пожаловать</title>
 
-{% block title %}
-Главная страница
-{% endblock %}
+</head>
+<body>
+   <h1>Добро пожаловать, {{ username }}!</h1>
+    <a href="/users" ><button style="background:purple">Список пользователей</button></a>
+    <a href="/methods" ><button style="background:purple">Методы шифрования</button></a>
+    <a href="/history_encrypt/admin" ><button style="background:purple">История сессии admin</button></a>
+    <a href="/history_encrypt/{{username}}" ><button style="background:purple">Моя история</button></a>
+    <a href="/logout" ><button style="background:red">Выйти</button></a>
 
-{% block body %}
-<h1>Основная страница сайта</h1>
-{% endblock %}
+
+   <style>
+       body {
+            background: green;
+            color:black;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+       }
+       button {
+
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+       }
+
+   </style>
+</body>
+</html>
