@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Пользователи
+{% endblock %}
+
+{% block body %}
+  <h1>Список пользователей</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user }} </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('title') }}" class="logout-button" style="color:red;">Выйти на главную</a>
+
+
+<style>
+       body {
+            background: green;
+            color:black;
+            font-family: 'Arial', sans-serif;
+
+       }
+       </style>
+
+{% endblock %}

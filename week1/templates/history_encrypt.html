@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История Шифрования</title>
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: green;
+            background-size: 400% 400%;
+            animation: gradient-bg 15s ease infinite;
+            color: black;
+        }
+        button{
+        text-align: center;
+        padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+        }
+        th, td {
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #fff;
+        }
+        th {
+            background-color: #556;
+            color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <h2>История Шифрования</h2>
+    <table>
+        <tr>
+            <th>Текст</th>
+            <th>Результат</th>
+            <th>Действие</th>
+            <th>Метод</th>
+            <th>Время</th>
+            <th>Имя</th>
+        </tr>
+        {% for record in history %}
+        <tr>
+            <td>{{ record.text }}</td>
+            <td>{{ record.result }}</td>
+            <td>{{ record.display_method }}</td>
+            <td>{{ 'Шифрование' if record.action == 'encrypt' else 'Дешифрование' }}</td>
+            <td>{{ record.timestamp }}</td>
+            <td>{{ record.username }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+ <a href="/title" ><button style="background:red;">Назад</button></a>
+</body>
+</html>
