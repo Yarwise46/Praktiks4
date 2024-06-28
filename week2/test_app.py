@@ -4,7 +4,7 @@ from app import app, db, User, caesar_cipher, vigenere_cipher
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://site.db'
     client = app.test_client()
 
     with app.app_context():

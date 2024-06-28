@@ -1,9 +1,11 @@
 from flask import Flask, request, redirect, render_template, session, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy.sql.functions import current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import time
 import itertools
+
 import os
 
 app = Flask(__name__)
@@ -241,6 +243,10 @@ def hack_vigenere_form():
     users = User.query.with_entities(User.username).all()
     return render_template('hack_vigenere.html', users=[user.username for user in users])
 
+
+
+
+
 @app.route('/hack_vigenere', methods=['POST'])
 def hack_vigenere():
     global session_id_counter
@@ -290,6 +296,11 @@ def hack_vigenere():
         return render_template('result_hack.html', results=possible_results, username=user.username)
     else:
         return jsonify({"message": "Invalid input"}), 400
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
