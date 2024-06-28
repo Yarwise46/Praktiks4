@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Взлом шифра Виженера</title>
+    <style>
+        body {
+            background: green;
+            color: black;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        form, .button-container {
+        display: block; /* Заставляет каждый элемент в форме занимать отдельную строку */
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: block; /* Добавлено для отображения на отдельной строке */
+        }
+        input[type="submit"], button {
+            background: purple;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Взлом шифра Виженера</h1>
+    <form action="/hack_vigenere" method="post">
+        <label for="user_id">ID пользователя:</label>
+        <select name="user_id" id="user_id">
+            {% for user in users %}
+            <option value="{{ user }}">{{ user }}</option>
+            {% endfor %}
+        </select>
+        <label for="data_in">Зашифрованный текст:</label>
+        <textarea name="data_in" id="data_in" rows="4" required></textarea>
+
+        <label for="keyword">Ключевое слово:</label>
+        <input type="text" name="keyword" id="keyword" required>
+        <div class="button-container">
+            <button type="submit" style="margin-right: 20px;">Взломать</button>
+            <a href='/title'><button type="button" style="margin-left: 20px;">Назад</button></a>
+        </div>
+    </form>
+</body>
+</html>
