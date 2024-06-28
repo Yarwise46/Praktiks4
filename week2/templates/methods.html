@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шифр Виженера</title>
+</head>
+<body>
+<h1>Методы шифрования</h1>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var methodSelect = document.getElementById('method');
+            var keyInput = document.getElementById('key');
+
+            function updateKeyInput() {
+                // Если выбран метод Цезаря, устанавливаем тип поля  'number'
+                if (methodSelect.value === 'caesar') {
+                    keyInput.type = 'number';
+                    keyInput.pattern = '\\d*';
+                } else {
+                    keyInput.type = 'text';
+                    keyInput.removeAttribute('pattern');
+                }
+            }
+
+
+            methodSelect.addEventListener('change', updateKeyInput);
+
+
+            updateKeyInput();
+        });
+    </script>
+
+    <div class="container">
+        <h1>Шифр Вижернера</h1>
+        <form method="post">
+            <label for="method">Метод шифрования:</label>
+            <select name="method" id="method">
+                <option value="vigenere">Шифр Виженера</option>
+                <option value="caesar">Шифр Цезаря</option>
+            </select>
+            <ol>
+            <label for="text">Текст:</label><br>
+            <textarea name="text" id="text" required ></textarea><br>
+            <label for="key">Ключ:</label><br>
+            <input type="text" name="key" id="key" required pattern="\\d*"><br></ol>
+            <ol><input type="radio" name="action" value="encrypt" checked> Зашифровать
+            <input type="radio" name="action" value="decrypt"> Расшифровать<br></ol>
+            <input type="submit" value="Ок" style="background:red; padding: 10px 20px; font-size: 15px;" >
+                {% if result %}
+                    <h2>Результат:</h2>
+                    <p>{{ result }}</p>
+                {% endif %}
+          <a href="/title" class="logout-button">Назад</a>
+     </div>
+    </form>
+
+
+<style>
+        body {
+            background-color: green;
+            color: #000;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        button{
+        background:red;
+        color:black;
+        align-items:center;
+        min-height: 5vh;
+        }
+        .container {
+            position: relative;
+            min-height: 100vh;
+        }
+        .logout-button {
+
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #444;
+            color: red;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: blue;
+        }
+
+    </style>
+</body>
+</html>

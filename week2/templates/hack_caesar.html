@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Взлом шифра Цезаря</title>
+    <style>
+        body {
+            background: green;
+            color: black;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        form, .button-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background: purple;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        button {
+            background: purple;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Взлом шифра Цезаря</h1>
+    <form action="/hack_caesar" method="post">
+        <label for="user_id">Выберите пользователя:</label>
+        <select name="user_id" id="user_id">
+            {% for user in users %}
+            <option value="{{ user }}">{{ user }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="data_in">Зашифрованный текст:</label>
+        <input type="text" id="data_in" name="data_in" required>
+        <br>
+        <label for="keyword">Ключевое слово:</label>
+        <input type="text" id="keyword" name="keyword">
+        <br>
+        <input type="submit" value="Взломать">
+    </form>
+    <div class="button-container">
+        <a href='/title'><button>Назад</button></a>
+    </div>
+</body>
+</html>
