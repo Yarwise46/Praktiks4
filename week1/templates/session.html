@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Подробности сессии
+{% endblock %}
+
+{% block body %}
+ <h1>Детали сессии</h1>
+    <p><b>Session ID:</b> {{ session.id }}</p>
+    <p><b>User:</b> {{ session.user_id }}</p>
+    <p><b>Method:</b> {{ session.method_id }}</p>
+    <p><b>Data In:</b> {{ session.data_in }}</p>
+    <p><b>Data Out:</b> {{ session.data_out }}</p>
+    <p><b>Status:</b> {{ session.status }}</p>
+    <p><b>Created At:</b> {{ session.created_at }}</p>
+    <p><b>Time of Operation:</b> {{ session.time_op }}</p>
+    <form action="{{ url_for('delete_session_form', session_id=session.id) }}" method="post">
+        <label for="secret">Секрет:</label>
+        <input type="password" name="secret"><br>
+        <button type="submit">Удалить сессии</button>
+    </form>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <a href="{{ url_for('get_sessions') }}">Вернуться к сессиям</a>
+{% endblock %}

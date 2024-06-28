@@ -17,6 +17,7 @@ methods = {}
 sessions = {}
 session_id_counter = 1
 history_encrypt = {}
+ALPHABET = ',.:(_)-0123456789АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 
 def caesar_cipher(text, shift, encrypt=True):
     alphabet = ',.:(_)-0123456789АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
@@ -37,24 +38,32 @@ def caesar_cipher(text, shift, encrypt=True):
     return result
 
 
-def vigenere_cipher(text, key, encrypt=True):
-    alphabet = ',.:(_)-0123456789АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    key_idx = 0
-    result = ''
-    alphabet_length = len(alphabet)
+def vigenere_cipher(text, key, encrypt=False):
+    ALPHABET = ',.:(_)-0123456789АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'  # Пример заданного алфавита
+    key = key.upper()
+    key_indices = [ALPHABET.index(k) for k in key if k in ALPHABET]
+    key_length = len(key_indices)
+    result = []
 
-    for char in text:
-     if char.upper() in alphabet:
-       shift = alphabet.index(key[key_idx % len(key)].upper())
-       if encrypt:
-         result += alphabet[(alphabet.index(char.upper()) + shift) % alphabet_length]
-       else:
-          result += alphabet[(alphabet.index(char.upper()) - shift) % alphabet_length]
-          key_idx += 1
-     else:
-           result += char
+    for i, char in enumerate(text):
+        # Проверяем, содержится ли символ в ALPHABET
+        if char.upper() in ALPHABET:
+            text_index = ALPHABET.index(char.upper())
+            key_index = key_indices[i % key_length]
 
-    return result
+            if encrypt:
+                new_index = (text_index + key_index) % len(ALPHABET)
+            else:
+                new_index = (text_index - key_index) % len(ALPHABET)
+
+            result.append(ALPHABET[new_index])
+
+        elif char.isalpha() and char.upper() not in ALPHABET:
+            continue
+        else:
+            result.append(char)
+
+    return ''.join(result)
 
 
 @app.route('/')
@@ -124,10 +133,14 @@ def methods():
                 result = caesar_cipher(text, shift, encrypt)
             elif method == 'vigenere':
                 result = vigenere_cipher(text, key, encrypt)
+
+            filtered_result = ''.join([char for char in result if char.upper() in ALPHABET])
+            filtered_text = ''.join([char for char in text if char.upper() in ALPHABET])
+
             history_encrypt[username].append({
                 'username': username,
-                'text': text,
-                'result': result,
+                'text': filtered_text,
+                'result': filtered_result,
                 'method': method,
                 'action': 'encrypt' if encrypt else 'decrypt',
                 'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block title %}
+   Сессия
+{% endblock %}
+
+{% block body %}
+  <h1>Cессия</h1>
+    <ul>
+        {% for session in sessions %}
+            <li>
+                <b>Session ID:</b> {{ session.id }} <br>
+                <b>User:</b> {{ session.user_id }} <br>
+                <b>Method:</b> {{ session.method_id }} <br>
+                <b>Data In:</b> {{ session.data_in }} <br>
+                <b>Data Out:</b> {{ session.data_out }} <br>
+                <b>Created At:</b> {{ session.created_at }} <br>
+                <a href="{{ url_for('get_session', session_id=session.id) }}">подробности сессии</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('home') }}">на Главную</a>
+{% endblock %}
